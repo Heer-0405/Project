@@ -1,0 +1,20 @@
+
+@import "tailwindcss";
+
+
+
+.active {
+    @apply text-red-400
+}
+
+.button {
+    @apply border-2 px-2 pt-[1px] pb-1 rounded-2xl hover:cursor-pointer active:scale-95
+}
+
+.red-500-50{
+   @apply bg-red-500/50
+}
+
+.blue-500-50{
+    @apply bg-blue-500/50
+}
