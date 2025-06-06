@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import Navigation from "./pages/Navigation";
-import { ToastContainer } from "react-toastify"
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { $UserAuthToken } from "../redux/Thunk/Auth.thunk"
@@ -36,7 +36,7 @@ const dispatch = useDispatch()
                 <Outlet />
             </main>
 
-            <ToastContainer />
+            
         </>
     )
 }

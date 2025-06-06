@@ -11,3 +11,14 @@ export const $adminLogin = createAsyncThunk(
         }
     }
 )
+
+export const $AdminAutoLogin = createAsyncThunk(
+    "AdminAutoLogin", async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get("/api/admin/AdminAutoLogin")
+            return response.data
+        } catch (err) {
+            return rejectWithValue(err.response.data)
+        }
+    }
+)

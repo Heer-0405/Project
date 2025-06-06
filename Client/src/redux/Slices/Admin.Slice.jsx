@@ -1,11 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { $adminLogin } from "../Thunk/Admin.thunk";
+import { $AdminAutoLogin, $adminLogin } from "../Thunk/Admin.thunk";
+import { toast } from "react-toastify";
 
 const slice = createSlice({
     name: "AdminSlice",
 
     initialState: {
-        adminLogin: false
+        loading: false,
+        process: null,
+        adminLogin: false,
+       adminData :null
     },
 
     reducers: {
@@ -26,6 +30,7 @@ const slice = createSlice({
             state.loading = false
             state.resMsg = message
             state.process = process
+            state.adminLogin = true
             toast.success(message, {
                 position: "bottom-right",
                 closeOnClick: true
@@ -36,11 +41,34 @@ const slice = createSlice({
             state.loading = false
             state.resMsg = message
             state.process = process
+            state.adminLogin = false
             toast.error(message, {
                 position: "bottom-right",
                 closeOnClick: true
             })
         })
+
+        // ! Admin Auto Login
+        builder
+      .addCase($AdminAutoLogin.pending, (state) => {
+        state.loading = true
+      })
+      .addCase($AdminAutoLogin.fulfilled, (state, action) => {
+        const { message, process, data } = action.payload
+        state.loading = false
+        state.process = process
+        state.adminData = data
+        state.adminLogin = true
+        toast.success(message, {
+          position: "bottom-right",
+          closeOnClick: true
+        })
+      })
+      .addCase($AdminAutoLogin.rejected, (state, action) => {
+        const { process } = action.payload
+        state.loading = false
+        state.process = process
+      })
 
 
 }

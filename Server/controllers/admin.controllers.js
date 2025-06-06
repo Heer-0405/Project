@@ -23,7 +23,7 @@ export async function AdminLogin(req, res) {
         res.status(201).cookie("AdminToken", genreatedToken, { httpOnly: true, secure: true }).send({
             process: true,
             message: "Admin login successfully",
-            userData: user
+            Data: user
         })
 
     } catch (err) {
